@@ -6,9 +6,11 @@ NativeMovingAverage = Callable[[Sequence[float], int], list[float]]
 native_moving_average: NativeMovingAverage | None
 
 try:
-    from portfolio_core import moving_average as native_moving_average
+    from portfolio_core import moving_average as imported_moving_average
 except Exception:  # pragma: no cover - depends on optional native package
     native_moving_average = None
+else:
+    native_moving_average = imported_moving_average
 
 
 def moving_average(values: Sequence[float], window: int) -> list[float]:
