@@ -4,7 +4,6 @@ from fastapi.testclient import TestClient
 
 from consumer_service.api import app
 
-
 client = TestClient(app)
 
 

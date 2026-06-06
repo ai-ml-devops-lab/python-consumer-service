@@ -15,7 +15,10 @@ def moving_average(values: Sequence[float], window: int) -> list[float]:
         raise ValueError("window must be greater than zero")
     if len(values) < window:
         return []
-    return [sum(values[index : index + window]) / window for index in range(len(values) - window + 1)]
+    return [
+        sum(values[index : index + window]) / window
+        for index in range(len(values) - window + 1)
+    ]
 
 
 def implementation() -> str:

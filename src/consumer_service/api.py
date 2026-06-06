@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+import time
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-import time
 
 from consumer_service.core_adapter import implementation, moving_average
 
