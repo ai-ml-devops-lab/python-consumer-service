@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  consumer-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python-consumer-service-dev
+    ports:
+      - "8010:8010"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+    command: uvicorn consumer_service.api:app --host 0.0.0.0 --port 8010 --reload
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/health').read()"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
